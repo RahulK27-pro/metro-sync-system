@@ -1,6 +1,5 @@
 // API service for connecting to Flask backend
-// TODO: Replace with your actual Flask backend URL
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://10.29.39.140:5000';
 
 export const api = {
   // Passengers
@@ -99,6 +98,9 @@ export const api = {
   // Trips
   getTrips: async () => {
     const response = await fetch(`${API_BASE_URL}/trips`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch trips: ${response.statusText}`);
+    }
     return response.json();
   },
 

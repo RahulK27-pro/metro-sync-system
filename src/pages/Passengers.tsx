@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search, Plus, Edit, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,19 +11,50 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { api } from "@/services/api";
+
+interface Passenger {
+  PassengerID: number;
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  PhoneNumber: string;
+  RegistrationDate: string;
+}
 
 export default function Passengers() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [passengers, setPassengers] = useState<Passenger[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // TODO: Fetch from API
-  const passengers: any[] = [];
+  useEffect(() => {
+    const fetchPassengers = async () => {
+      try {
+        setLoading(true);
+        const data = await api.getPassengers();
+        setPassengers(data);
+        setError(null);
+      } catch (err) {
+        console.error("Failed to fetch passengers:", err);
+        setError("Failed to load passengers. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPassengers();
+  }, []);
 
   const filteredPassengers = passengers.filter(
     (p) =>
-      p.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.email.toLowerCase().includes(searchTerm.toLowerCase())
+      (p.FirstName?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+      (p.LastName?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+      (p.Email?.toLowerCase() || '').includes(searchTerm.toLowerCase())
   );
+
+  if (loading) return <div className="text-center py-8">Loading passengers...</div>;
+  if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
 
   return (
     <div className="space-y-6">
@@ -57,9 +88,7 @@ export default function Passengers() {
           <Table>
             <TableHeader>
               <TableRow className="bg-muted/50">
-                <TableHead>ID</TableHead>
-                <TableHead>First Name</TableHead>
-                <TableHead>Last Name</TableHead>
+                <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
                 <TableHead>Phone</TableHead>
                 <TableHead>Registration Date</TableHead>
@@ -68,22 +97,22 @@ export default function Passengers() {
             </TableHeader>
             <TableBody>
               {filteredPassengers.map((passenger) => (
-                <TableRow key={passenger.id} className="hover:bg-muted/30 transition-colors">
-                  <TableCell className="font-medium">{passenger.id}</TableCell>
-                  <TableCell>{passenger.firstName}</TableCell>
-                  <TableCell>{passenger.lastName}</TableCell>
-                  <TableCell>{passenger.email}</TableCell>
-                  <TableCell>{passenger.phone}</TableCell>
-                  <TableCell>{passenger.registrationDate}</TableCell>
+                <TableRow key={passenger.PassengerID}>
+                  <TableCell className="font-medium">
+                    {passenger.FirstName} {passenger.LastName}
+                  </TableCell>
+                  <TableCell>{passenger.Email}</TableCell>
+                  <TableCell>{passenger.PhoneNumber}</TableCell>
+                  <TableCell>
+                    {new Date(passenger.RegistrationDate).toLocaleDateString()}
+                  </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button variant="outline" size="sm">
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button variant="destructive" size="sm">
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
+                    <Button variant="ghost" size="sm" className="mr-2">
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button variant="ghost" size="sm" className="text-red-500 hover:text-red-600">
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}
