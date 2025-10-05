@@ -3,12 +3,12 @@ import { StatCard } from "@/components/StatCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Dashboard() {
-  // TODO: Replace with actual API data
+  // TODO: Fetch from API
   const stats = {
-    totalPassengers: 1247,
-    activeCards: 983,
-    totalBalance: "₹45,678",
-    totalTrips: 3456,
+    totalPassengers: 0,
+    activeCards: 0,
+    totalBalance: "₹0",
+    totalTrips: 0,
   };
 
   return (
@@ -51,28 +51,8 @@ export default function Dashboard() {
             <CardTitle>Recent Activity</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
-                <div>
-                  <p className="font-medium">New Passenger Registration</p>
-                  <p className="text-sm text-muted-foreground">John Doe - 2 hours ago</p>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-success"></div>
-              </div>
-              <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
-                <div>
-                  <p className="font-medium">Card Recharge</p>
-                  <p className="text-sm text-muted-foreground">Card #1234 - ₹500 - 3 hours ago</p>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-accent"></div>
-              </div>
-              <div className="flex items-center justify-between p-4 rounded-lg bg-muted/50">
-                <div>
-                  <p className="font-medium">Trip Completed</p>
-                  <p className="text-sm text-muted-foreground">Station A → Station B - 5 hours ago</p>
-                </div>
-                <div className="w-2 h-2 rounded-full bg-primary"></div>
-              </div>
+            <div className="flex items-center justify-center h-40 text-muted-foreground">
+              No recent activity
             </div>
           </CardContent>
         </Card>
@@ -85,19 +65,19 @@ export default function Dashboard() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Active Trips</span>
-                <span className="font-bold text-foreground">24</span>
+                <span className="font-bold text-foreground">0</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Blocked Cards</span>
-                <span className="font-bold text-destructive">3</span>
+                <span className="font-bold text-destructive">0</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Total Stations</span>
-                <span className="font-bold text-foreground">42</span>
+                <span className="font-bold text-foreground">0</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Average Fare</span>
-                <span className="font-bold text-foreground">₹35</span>
+                <span className="font-bold text-foreground">₹0</span>
               </div>
             </div>
           </CardContent>

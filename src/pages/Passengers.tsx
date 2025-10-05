@@ -15,12 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Passengers() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const passengers = [
-    { id: 1, firstName: "John", lastName: "Doe", email: "john@example.com", phone: "+91-9876543210", registrationDate: "2024-01-15" },
-    { id: 2, firstName: "Jane", lastName: "Smith", email: "jane@example.com", phone: "+91-9876543211", registrationDate: "2024-01-20" },
-    { id: 3, firstName: "Mike", lastName: "Johnson", email: "mike@example.com", phone: "+91-9876543212", registrationDate: "2024-02-01" },
-  ];
+  // TODO: Fetch from API
+  const passengers: any[] = [];
 
   const filteredPassengers = passengers.filter(
     (p) =>

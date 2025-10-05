@@ -15,13 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function CardTypes() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const cardTypes = [
-    { id: 1, typeName: "Regular", baseFareMultiplier: 1.0, description: "Standard fare for adult passengers" },
-    { id: 2, typeName: "Student", baseFareMultiplier: 0.6, description: "Discounted fare for students with valid ID" },
-    { id: 3, typeName: "Senior", baseFareMultiplier: 0.5, description: "Discounted fare for senior citizens (60+)" },
-    { id: 4, typeName: "Premium", baseFareMultiplier: 1.5, description: "Priority access and premium features" },
-  ];
+  // TODO: Fetch from API
+  const cardTypes: any[] = [];
 
   const filteredCardTypes = cardTypes.filter((ct) =>
     ct.typeName.toLowerCase().includes(searchTerm.toLowerCase())

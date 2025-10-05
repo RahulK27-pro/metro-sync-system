@@ -16,13 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Stations() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const stations = [
-    { id: 1, name: "Central Station", lineColor: "Blue", zone: "Zone A" },
-    { id: 2, name: "North Terminal", lineColor: "Red", zone: "Zone B" },
-    { id: 3, name: "South Junction", lineColor: "Green", zone: "Zone A" },
-    { id: 4, name: "East Gateway", lineColor: "Yellow", zone: "Zone C" },
-  ];
+  // TODO: Fetch from API
+  const stations: any[] = [];
 
   const getLineColorClass = (color: string) => {
     const colorMap: Record<string, string> = {

@@ -15,13 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Transactions() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const transactions = [
-    { id: 1, type: "Recharge", amount: 500, date: "2024-03-15 09:00", cardNumber: "MC-1001", description: "Online Recharge" },
-    { id: 2, type: "Deduction", amount: -35, date: "2024-03-15 10:15", cardNumber: "MC-1001", description: "Trip Fare" },
-    { id: 3, type: "Recharge", amount: 250, date: "2024-03-15 11:30", cardNumber: "MC-1002", description: "Counter Recharge" },
-    { id: 4, type: "Deduction", amount: -40, date: "2024-03-15 11:45", cardNumber: "MC-1002", description: "Trip Fare" },
-  ];
+  // TODO: Fetch from API
+  const transactions: any[] = [];
 
   const filteredTransactions = transactions.filter((t) =>
     t.cardNumber.toLowerCase().includes(searchTerm.toLowerCase())

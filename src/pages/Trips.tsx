@@ -15,12 +15,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Trips() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const trips = [
-    { id: 1, cardNumber: "MC-1001", entryTime: "2024-03-15 09:30", exitTime: "2024-03-15 10:15", fareAmount: 35, entryStation: "Central Station", exitStation: "North Terminal", status: "Completed" },
-    { id: 2, cardNumber: "MC-1002", entryTime: "2024-03-15 11:00", exitTime: "2024-03-15 11:45", fareAmount: 40, entryStation: "South Junction", exitStation: "East Gateway", status: "Completed" },
-    { id: 3, cardNumber: "MC-1003", entryTime: "2024-03-15 14:20", exitTime: null, fareAmount: 0, entryStation: "Central Station", exitStation: "-", status: "Ongoing" },
-  ];
+  // TODO: Fetch from API
+  const trips: any[] = [];
 
   const filteredTrips = trips.filter((t) =>
     t.cardNumber.toLowerCase().includes(searchTerm.toLowerCase())

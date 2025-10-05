@@ -16,13 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function FareRules() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const fareRules = [
-    { id: 1, startStation: "Central Station", endStation: "North Terminal", fareType: "Regular", fareAmount: 35 },
-    { id: 2, startStation: "Central Station", endStation: "North Terminal", fareType: "Student", fareAmount: 20 },
-    { id: 3, startStation: "South Junction", endStation: "East Gateway", fareType: "Regular", fareAmount: 40 },
-    { id: 4, startStation: "South Junction", endStation: "East Gateway", fareType: "Senior", fareAmount: 25 },
-  ];
+  // TODO: Fetch from API
+  const fareRules: any[] = [];
 
   const filteredRules = fareRules.filter(
     (r) =>

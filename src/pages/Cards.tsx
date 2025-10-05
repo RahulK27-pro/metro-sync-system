@@ -16,12 +16,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Cards() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // TODO: Replace with actual API data
-  const cards = [
-    { id: 1, cardNumber: "MC-1001", balance: 500, issueDate: "2024-01-15", status: "Active", passengerName: "John Doe", cardType: "Regular" },
-    { id: 2, cardNumber: "MC-1002", balance: 250, issueDate: "2024-01-20", status: "Active", passengerName: "Jane Smith", cardType: "Student" },
-    { id: 3, cardNumber: "MC-1003", balance: 0, issueDate: "2024-02-01", status: "Blocked", passengerName: "Mike Johnson", cardType: "Senior" },
-  ];
+  // TODO: Fetch from API
+  const cards: any[] = [];
 
   const getStatusColor = (status: string) => {
     switch (status) {
