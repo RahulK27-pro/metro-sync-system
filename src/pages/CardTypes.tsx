@@ -1,0 +1,96 @@
+import { useState } from "react";
+import { Search, Plus, Edit, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+export default function CardTypes() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // TODO: Replace with actual API data
+  const cardTypes = [
+    { id: 1, typeName: "Regular", baseFareMultiplier: 1.0, description: "Standard fare for adult passengers" },
+    { id: 2, typeName: "Student", baseFareMultiplier: 0.6, description: "Discounted fare for students with valid ID" },
+    { id: 3, typeName: "Senior", baseFareMultiplier: 0.5, description: "Discounted fare for senior citizens (60+)" },
+    { id: 4, typeName: "Premium", baseFareMultiplier: 1.5, description: "Priority access and premium features" },
+  ];
+
+  const filteredCardTypes = cardTypes.filter((ct) =>
+    ct.typeName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Card Type Management</h1>
+          <p className="text-muted-foreground">Manage different card categories</p>
+        </div>
+        <Button className="bg-gradient-accent shadow-glow">
+          <Plus className="w-4 h-4 mr-2" />
+          Add Card Type
+        </Button>
+      </div>
+
+      <Card className="shadow-md">
+        <CardHeader className="border-b border-border/50">
+          <CardTitle className="flex items-center justify-between">
+            <span>All Card Types</span>
+            <div className="relative w-72">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                placeholder="Search card types..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-muted/50">
+                <TableHead>Type ID</TableHead>
+                <TableHead>Type Name</TableHead>
+                <TableHead>Fare Multiplier</TableHead>
+                <TableHead>Description</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {filteredCardTypes.map((cardType) => (
+                <TableRow key={cardType.id} className="hover:bg-muted/30 transition-colors">
+                  <TableCell className="font-medium">{cardType.id}</TableCell>
+                  <TableCell className="font-semibold">{cardType.typeName}</TableCell>
+                  <TableCell>
+                    <span className="font-mono text-accent">{cardType.baseFareMultiplier}x</span>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{cardType.description}</TableCell>
+                  <TableCell className="text-right">
+                    <div className="flex justify-end gap-2">
+                      <Button variant="outline" size="sm">
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button variant="destructive" size="sm">
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
