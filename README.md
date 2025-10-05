@@ -61,6 +61,21 @@ A comprehensive metro transportation management system with a modern web interfa
    npm run dev
    ```
 
+## Technologies Used
+
+- **Frontend**:
+  - React
+  - TypeScript
+  - Vite
+  - shadcn-ui
+  - Tailwind CSS
+
+- **Backend**:
+  - Python
+  - FastAPI
+  - SQLAlchemy
+  - PostgreSQL
+
 ## Features
 
 - Real-time metro system monitoring
@@ -68,6 +83,26 @@ A comprehensive metro transportation management system with a modern web interfa
 - Route planning and scheduling
 - User authentication and authorization
 - Admin dashboard for system management
+
+## Development
+
+### Using Lovable
+
+You can edit this project directly in Lovable:
+- Visit the [Lovable Project](https://lovable.dev/projects/4506d6b7-c39c-48e8-86b4-2c20eecdbe72)
+- Changes made via Lovable will be committed automatically to this repo
+
+### Local Development
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/RahulK27-pro/metro-sync-system.git
+   cd metro-sync-system
+   ```
+
+2. Follow the setup instructions above for both backend and frontend
+
+3. Start developing!
 
 ## Contributing
 
